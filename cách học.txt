@@ -1,0 +1,15 @@
+-các đặc điẻm trong java version 8 
+-sài view themelist
+-học restful api
+-học về spring security
+-học về web application ....
+-học bài 1,2,3,8,5,6,7
+
+-1 số chức năng thêm
++ chuyển khoản online
++ 
+
+
+
+
+
