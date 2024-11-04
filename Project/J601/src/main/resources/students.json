@@ -1,0 +1,70 @@
+[
+	{
+		"name": "Phạm Văn Phong",
+		"gender": true,
+		"marks": 7.5,
+		"contact": {
+			"email": "teonv@gmail.com",
+			"phone": "0333002951"
+		},
+		"subjects": [
+			"WEB205",
+			"COM108"
+		]
+	},
+	{
+		"name": "Trần Thị Thu hương",
+		"gender": false,
+		"marks": 5.5,
+		"contact": {
+			"email": "huongttt@gmail.com",
+			"phone": "0913745789"
+		},
+		"subjects": [
+			"WEB205",
+			"COM108",
+			"WEB105"
+		]
+	},
+	{
+		"name": "Phạm Đức Cường",
+		"gender": true,
+		"marks": 9.5,
+		"contact": {
+			"email": "cuongpd@gmail.com",
+			"phone": "0903215769",
+			"address":"778/B1 Nguyễn kiệm, P4, Q.Phú Nhuận"
+		},
+		"subjects": [
+			"WEB205",
+			"COM108"
+		]
+	},
+	{
+		"name": "Lê Thị mỹ Hồng",
+		"gender": true,
+		"marks": 7.5,
+		"contact": {
+			"email": "teonv@gmail.com",
+			"phone": "0913745789"
+		},
+		"subjects": [
+			"WEB205",
+			"COM108"
+		]
+	},
+	{
+		"name": "Đoàn Thị Kim Ty",
+		"gender": true,
+		"marks": 8.0,
+		"contact": {
+			"email": "teonv@gmail.com",
+			"phone": "0913745789"
+		},
+		"subjects": [
+			"WEB205",
+			"COM108"
+		]
+	}
+	
+]

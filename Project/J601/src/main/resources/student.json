@@ -1,0 +1,10 @@
+{
+			"name":"Phạm Văn Phong",
+			"gender":true,
+			"marks":7.5,
+			"contact":{
+				"email":"teonv@gmail.com",
+				"phone":"0913745789"
+			},
+			"subjects":["WEB205","COM108"]
+}
