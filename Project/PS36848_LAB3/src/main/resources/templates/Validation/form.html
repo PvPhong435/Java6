@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http//www.thymeleaf.org"  th:replace="~{/layout/layoutI18n::dynamic(~{::body})}">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	i
+	{
+		color: red;
+	}
+</style>
+<body>
+	<h3>Data Binding</h3>
+	<form action="/validation/save" method="post" th:object="${sv}">
+	<i th:text="${message}"></i><br>
+	<input th:field=*{email} placeholder="Email Address?">
+	<i th:errors="*{email}"></i><br>
+	<input th:field=*{fullname} placeholder="Full Name?">
+	<i th:errors="*{fullname}"></i><br>
+	<input th:field=*{marks} placeholder="Average Marks?">
+	<i th:errors="*{marks}"></i><br>	
+	<input th:field=*{gender} th:value="true" type="radio">Male
+	<input th:field=*{gender} th:value="false" type="radio">Female
+	<i th:errors="*{gender}"></i><br>
+	<select th:field="*{country}"><br>
+		<option value="">Nationality</option>
+		<option value="VN">Viet Nam</option>
+		<option value="US">United States</option>
+	</select>
+	<i th:errors="*{country}"></i>
+	<hr>
+
+	<button>Save</button>
+
+	</form>
+</body>
+</html>

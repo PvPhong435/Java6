@@ -31,6 +31,11 @@
 		<b th:case="*">Sắp ra trường</b>
 	</li>
 	<li th:if="*{marks}>9"><i>Title:</i><b>Golden Bee</b></li>
+	<th:block th:unless="*{marks}>=9">
+	<li th:if="*{marks}>=8"><i>Title:</i><b>Excellent</b></li>
+	<th:block th:unless="*{marks}>=8">
+	<li th:if="*{marks}>=7"><i>Title:</i><b>Good</b></li>
+	<th:block th:unless="*{marks}>=7">
 	</ul>
 </body>
 </html>
