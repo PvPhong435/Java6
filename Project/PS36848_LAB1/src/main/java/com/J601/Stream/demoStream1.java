@@ -11,13 +11,13 @@ import com.J601.bean.Staff;
 
 public class demoStream1 {
 	public static void main(String[] args) {
-//		Demo1();
-//		Demo2();
-		// Demo3();
+		Demo1();
+		Demo2();
+		 Demo3();
 		Demo4();
-		//Demo5();
-		//Demo6();
-		//Demo7();
+		Demo5();
+		Demo6();
+		Demo7();
 	}
 
 	public static void Demo1() {

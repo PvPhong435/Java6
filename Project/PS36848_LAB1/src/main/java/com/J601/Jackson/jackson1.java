@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class jackson1 {
 	public static void main(String[] args) throws Exception
 	{
-		//demo1();
+		demo1();
 		demo2();
 	}
 

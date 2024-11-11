@@ -1,7 +1,0 @@
-package com.J601.bean;
-
-public class Student {
-	String name;
-	Boolean gender=false;
-	Double marks=0.0;
-}

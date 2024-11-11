@@ -11,9 +11,9 @@ import com.J601.bean.Student;
 
 public class Lambda {
 	public static void main(String[] args) {
-		// demo1();
-		// demo2();
-		// demo3();
+		 demo1();
+		 demo2();
+		 demo3();
 		demo4();
 	}
 

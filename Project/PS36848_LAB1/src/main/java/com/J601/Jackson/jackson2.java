@@ -1,6 +1,7 @@
 package com.J601.Jackson;
 
 import java.io.File;
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,12 +19,12 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 public class jackson2 {
 
 	public static void main(String[] args)throws Exception  {
-		//demo1();
-		//demo2();
-		//demo3();
-		//demo4();
-		//demo5();
-		//demo6();
+		demo1();
+		demo2();
+		demo3();
+		demo4();
+		demo5();
+		demo6();
 		demo7();
 
 	}
