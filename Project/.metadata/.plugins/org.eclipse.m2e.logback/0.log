@@ -5093,3 +5093,4 @@ org.eclipse.core.runtime.CoreException: Launch configuration Lambda references n
 =======
 >>>>>>> 7e4e094934ad290230c1f19e7acf986fa538674d
 >>>>>>> c5a1d01e76a70f81a92abe50311b336ff0a6a4dc
+2024-11-15 10:52:51,540 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is out-of-date. Trying to update.
