@@ -32,6 +32,9 @@ public class loginController {
 	String maXacThuc="";
 	@Autowired
 	UserDao userDao;
+	String mess="";
+	String checkMaXacThuc="";
+	User user;
 	
 	
 	//Đăng nhập
@@ -42,41 +45,26 @@ public class loginController {
 //		model.addAttribute("user",user);
 		List<User> dsnv=userDao.findAll();
 		System.out.println(dsnv.toString());
+		model.addAttribute("mess", mess);
 		return "Check/Login";
 	}
 	
 	@PostMapping("/login")
-	public String checkLogin(Model model,@RequestParam("username")String username,@RequestParam("password")String pass)
-	{
-		List<User> dsnv=userDao.findAll();
-		Boolean checkUser=false;
-		for(User u:dsnv)
-		{
-			if(u.getUsername().equals(username))
-			{
-				checkUser=true;
-				if(u.getPassword().equals(pass))
-				{
-					System.out.println("Đăng nhập thành công");
-					
-				}
-				else
-				{
-					
-				}
-			}
-		}
-		
-		if(!checkUser)
-		{
-			
-		}
-		else
-		{
-			
-		}
-		return "";
+	public String checkLogin(Model model, @RequestParam("username") String username, @RequestParam("password") String pass) {
+	    User user = userDao.findByUsername(username);
+	    if (user == null) {
+	    	mess="Tài khoản không tồn tại";
+	        return "redirect:/login";
+	    }
+	    if (!user.getPassword().equals(pass)) {
+	    	mess="Sai mật khẩu, vui lòng nhập lại";
+	        return "redirect:/login";
+	    }
+	    user = user;
+	    System.out.println("Đăng nhập thành công");
+	    return "check/success";
 	}
+
 	
 	//Đăng Ký
 	@GetMapping("/signup")
@@ -97,15 +85,78 @@ public class loginController {
 	@GetMapping("/forgotpass")
 	public String ForgotPass(Model model)
 	{
-		
-		return "";
+		model.addAttribute("mess", mess);
+		return "Check/GetUssername";
 	}
 	
 	@PostMapping("/forgotpass")
-	public String checkForgotPass(Model model)
+	public String checkForgotPass(Model model,@RequestParam("otp") String otp)
 	{
-		
-		return "";
+		System.out.println(otp);
+		System.out.println(checkMaXacThuc);
+		if(otp.equals(checkMaXacThuc))
+		{
+			return "Check/SetNewPass";
+		}
+		else
+		{
+			mess="Mã xác thực không đúng vui lòng nhập lại";
+			return "redirect:/checkOTP";
+		}
+	}
+	
+	@GetMapping("/checkOTP")
+	public String CheckOTP(Model model)
+	{
+		model.addAttribute("mess", mess);
+		return "Check/ForgotPass";
+	}
+	
+	@RequestMapping("/getCode")
+	public String getCodeEmail(Model model,@RequestParam("username") String username)
+	{
+		if(username==""||username==null)
+		{
+			mess="Bạn chưa nhập tên người dùng";
+			return "redirect:/forgotpass";
+		}
+		else
+		{
+			user=userDao.findByUsername(username);
+			if(user!=null)
+			{
+				if(!sendMail(user.getEmail(), user.getFullname()))
+				{
+					mess="gửi mail thất bại";
+					return "redirect:/forgotpass";
+				}
+				else
+				{
+					mess="gửi mail Thành Công vui lòng kiểm tra email của bạn";
+					return "Check/ForgotPass";
+				}
+			}
+			else
+			{
+				mess="Tên đăng nhập không tồn tại";
+				return "redirect:/forgotpass";
+			}
+		}
+	}
+	
+	@RequestMapping("/sendMailAganin")
+	public String sendMailAgain(Model model)
+	{
+		if(!sendMail(user.getEmail(), user.getFullname()))
+		{
+			mess="gửi mail thất bại";
+			return "redirect:/forgotpass";
+		}
+		else
+		{
+			mess="gửi mail Thành Công vui lòng kiểm tra email của bạn";
+			return "Check/ForgotPass";
+		}
 	}
 	
 	//Đổi mật khẩu
@@ -117,10 +168,20 @@ public class loginController {
 	}
 	
 	@PostMapping("/changePass")
-	public String CheckChangePass(Model model)
+	public String CheckChangePass(Model model,@RequestParam("password") String password,@RequestParam("Confpassword") String confPassword)
 	{
-		
-		return "";
+		if(password.equals(confPassword))
+		{
+			user.setPassword(confPassword);
+			userDao.save(user);
+			return "Check/success";
+		}
+		else
+		{
+			mess="Mật khẩu xác thực không khớp";
+			model.addAttribute("mess", mess);
+			return "Check/SetNewPass";
+		}
 	}
 	
 	public Boolean sendMail(String email,String name)
@@ -142,13 +203,12 @@ public class loginController {
 	            }
 	        });
 	        
-	        StringBuilder ranNum=new StringBuilder("");
-	        for(int i=0;i<6;i++)
-	        {
-	        	Double rand = (Math.random()*9)+1;
-	        	ranNum.append(rand.toString());
+	        StringBuilder ranNum = new StringBuilder();
+	        for (int i = 0; i < 6; i++) {
+	            int rand = (int) ((Math.random() * 9) + 1); // Random số nguyên từ 1 đến 9
+	            ranNum.append(rand);
 	        }
-	        System.out.println(ranNum);
+	        System.out.println("mã khi vừa đc render "+ranNum.toString());
 	        maXacThuc=ranNum.toString();
 	        
 	        
@@ -169,8 +229,9 @@ public class loginController {
 	        
 	        Transport.send(message);
 	        System.out.println("Email đã được gửi thành công!");
+	        checkMaXacThuc=maXacThuc;
+	        System.out.println(checkMaXacThuc);
 	        maXacThuc="";
-	        
 	        return true;
 		} catch (Exception e) {
 			System.out.println("Email đã được gửi Thất Bại!"+e.toString());
