@@ -1,0 +1,122 @@
+### **Tóm tắt toàn bộ nội dung đã thảo luận**
+
+---
+
+#### **1. Quan hệ `@OneToMany` và `@ManyToOne` trong Hibernate**
+- **`@OneToMany`**: Liên kết một đối tượng với danh sách các đối tượng khác.
+  - Ví dụ: Một `Role` có nhiều `Authority`.
+  - Sử dụng `mappedBy` để xác định trường ở phía `@ManyToOne`.
+- **`@ManyToOne`**: Liên kết nhiều đối tượng tới một đối tượng duy nhất.
+  - Ví dụ: Nhiều `Authority` cùng thuộc một `Role`.
+  - Sử dụng `@JoinColumn` để xác định khóa ngoại.
+
+---
+
+#### **2. Vai trò của `@JoinColumn` và `referencedColumnName`**
+- **`@JoinColumn(name)`**: Chỉ định cột khóa ngoại trong bảng hiện tại tham chiếu đến bảng liên quan.
+- **`referencedColumnName`**: Chỉ định tên cột cụ thể ở bảng được tham chiếu.
+  - Nếu không sử dụng, Hibernate mặc định tham chiếu đến khóa chính của bảng liên quan.
+
+---
+
+#### **3. Tên biến và ánh xạ trong Hibernate**
+- Tên thuộc tính (`authRole`, `orders`,...) có thể đặt tùy ý, miễn là:
+  - Trường phía `@OneToMany` sử dụng `mappedBy` đúng với tên biến phía `@ManyToOne`.
+  - Cột trong cơ sở dữ liệu được ánh xạ thông qua `@JoinColumn`.
+
+---
+
+#### **4. Ví dụ cụ thể**
+
+**Ví dụ 1: `Account` và `Order` (`@OneToMany` và `@ManyToOne`)**
+- `Account` có nhiều `Order`.
+- `Order` tham chiếu đến `Account` qua cột `Username`.
+
+**Entity `Account`:**
+```java
+@Entity
+@Table(name="Accounts")
+public class Account {
+    @Id
+    @Column(name = "Username")
+    private String username;
+
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL)
+    private List<Order> orders;
+}
+```
+
+**Entity `Order`:**
+```java
+@Entity
+@Table(name="Orders")
+public class Order {
+    @Id
+    @Column(name="Id")
+    private String id;
+
+    @ManyToOne
+    @JoinColumn(name="Username", referencedColumnName="Username")
+    private Account account;
+}
+```
+
+---
+
+**Ví dụ 2: `Role` và `Authority` (`@OneToMany` và `@ManyToOne`)**
+- `Role` có nhiều `Authority`.
+- `Authority` tham chiếu đến `Role` qua cột `RoleId`.
+
+**Entity `Role`:**
+```java
+@Entity
+@Table(name = "Roles")
+public class Role {
+    @Id
+    @Column(name = "RoleId")
+    private String roleId;
+
+    @OneToMany(mappedBy = "authRole", cascade = CascadeType.ALL)
+    private List<Authority> authorities;
+}
+```
+
+**Entity `Authority`:**
+```java
+@Entity
+@Table(name = "Authorities")
+public class Authority {
+    @Id
+    @Column(name = "Id")
+    private String id;
+
+    @ManyToOne
+    @JoinColumn(name = "RoleId") // Khóa ngoại trỏ đến Role
+    private Role authRole;
+}
+```
+
+---
+
+#### **5. Truy vấn dữ liệu với Hibernate**
+- Từ phía `@OneToMany`:
+  - Lấy `Role` và danh sách tất cả các `Authority` liên quan qua `role.getAuthorities()`.
+- Từ phía `@ManyToOne`:
+  - Lấy `Authority` và thông tin `Role` tương ứng qua `authority.getAuthRole()`.
+
+---
+
+#### **6. Các câu hỏi khác**
+
+1. **Vì sao `@OneToMany` cần danh sách (List)?**
+   - Để chứa nhiều đối tượng liên quan (ví dụ: `authorities` trong `Role`).
+2. **Có thể đặt tên tùy ý cho biến liên kết không?**
+   - Đúng, miễn là `mappedBy` trùng với tên biến bên phía `@ManyToOne`.
+
+---
+
+### **Kết luận**
+- `@OneToMany` và `@ManyToOne` giúp xử lý quan hệ nhiều-đến-một và một-đến-nhiều trong Hibernate.
+- `@JoinColumn` với hoặc không có `referencedColumnName` đều được, tùy vào tình huống.
+- Tên thuộc tính liên kết (`authRole`, `authorities`,...) hoàn toàn có thể tùy ý.
+- Truy vấn dữ liệu linh hoạt từ cả hai phía (`OneToMany` và `ManyToOne`).
