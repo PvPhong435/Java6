@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Danh sách sinh viên</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+            text-align: left;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="center">Danh sách sinh viên</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Họ và tên</th>
+                <th>Điểm</th>
+                <th>Giới tính</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dữ liệu sẽ được đổ vào đây từ Controller -->
+            <tr th:each="student : ${students}">
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.fullname}"></td>
+                <td th:text="${student.marks}"></td>
+                <td th:text="${student.gender == true ? 'Nam' : 'Nữ'}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

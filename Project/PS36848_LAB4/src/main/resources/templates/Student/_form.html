@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<!-- Form nhập liệu -->
+        <div class="card p-4 shadow">
+            <form th:action="@{/create}" th:object="${form}" method="post">
+                <div class="form-group">
+                    <label>Email Address:</label>
+                    <input th:field="*{email}" class="form-control" placeholder="Email Address">
+                </div>
+                <div class="form-group">
+                    <label>Full Name:</label>
+                    <input th:field="*{fullname}" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="form-group">
+                    <label>Average Marks:</label>
+                    <input th:field="*{marks}" class="form-control" placeholder="Average Marks">
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label><br>
+                    <div class="form-check form-check-inline">
+                        <input th:field="*{gender}" type="radio" value="true" class="form-check-input" id="male">
+                        <label class="form-check-label" for="male">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input th:field="*{gender}" type="radio" value="false" class="form-check-input" id="female">
+                        <label class="form-check-label" for="female">Female</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Country:</label>
+                    <select th:field="*{country}" class="form-control">
+                        <option value="VN">Việt Nam</option>
+                        <option value="US">United States</option>
+                    </select>
+                </div>
+                <hr/>
+                <div class="text-center">
+                    <button th:formaction="@{/student/create}" class="btn btn-success mx-2">Create</button>
+                    <button th:formaction="@{|/student/update/${key}|}" class="btn btn-secondary mx-2">Update</button>
+                    <button th:formaction="@{|/student/delete/${key}|}" class="btn btn-success mx-2">Delete</button>
+                    <button th:formaction="@{/student/index}" class="btn btn-success mx-2">Reset</button>
+                </div>
+            </form>
+        </div>
+
+</body>
+</html>
