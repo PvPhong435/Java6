@@ -17,8 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.lab5.Dao.StudentDao;
 import com.lab5.Model.Student;
+
+import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
 @RestController
+@RequiredArgsConstructor
 public class StudentController {
 
 	@Autowired
