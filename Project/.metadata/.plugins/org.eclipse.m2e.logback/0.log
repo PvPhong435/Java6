@@ -10306,3 +10306,4 @@ org.apache.maven.project.ProjectBuildingException: Some problems were encountere
 2024-12-03 15:13:49,130 [Worker-124: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
 2024-12-03 15:13:49,141 [Worker-124: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 147 resources from src\main\resources to target\classes
 2024-12-03 15:13:49,192 [Worker-124: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory E:\FPT Polytechnic\JAVA\Java6\Project\PS36848_Lab8\src\test\resources
+2024-12-03 15:48:03,376 [Worker-4: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
