@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 public class Product {
 	@Id
 	@Column(name="Id")
-	private String id;
+	private Integer id;
 	
 	@Column(name="Name")
 	private String name;

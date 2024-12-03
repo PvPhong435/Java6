@@ -19,4 +19,10 @@ public class ProductServiceImpl implements ProductService {
 		// TODO Auto-generated method stub
 		return pdao.findAll();
 	}
+
+	@Override
+	public Product findById(Integer id) {
+		// TODO Auto-generated method stub
+		return pdao.findById(id).get();
+	}
 }

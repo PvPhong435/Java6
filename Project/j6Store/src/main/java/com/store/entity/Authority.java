@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name="Authorities")
 public class Authority {
 	@Id
-	private String Id;
+	private Integer Id;
 	
 	@Column(name = "Username")
 	private String username;

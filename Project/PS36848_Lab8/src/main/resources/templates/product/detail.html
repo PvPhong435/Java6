@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index :: dynamic(~{::main})}">
+<head>
+    <style>
+        .product-card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .product-card img {
+            object-fit: cover;
+            width: 100%;
+            height: 200px;
+        }
+        .product-card .card-body {
+            padding: 10px;
+        }
+        .product-card .card-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .product-list .card {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<main th:object="${item}" class="container mt-4">
+    <!-- Chi tiết sản phẩm -->
+    <div class="row mb-4">
+        <div class="col-12 col-md-6">
+            <div class="card product-card">
+                <img th:src="@{|/assets/images/*{img}|}" alt="Product Image">
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card product-card">
+                <div class="card-body">
+                    <h4 th:text="*{name}" class="card-title"></h4>
+                    <p><strong>Giá:</strong> <span th:text="*{price} + ' vnđ'"></span></p>
+                    <p><strong>Ngày tạo:</strong> <span th:text="*{createDate}"></span></p>
+                    <p><strong>Danh mục:</strong> <span th:text="*{category.name}"></span></p>
+                </div>
+               <div class="card-footer text-center">
+				    <button class="btn btn-success">
+				        <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+				    </button>
+				</div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Hàng cùng loại -->
+   <div class="row">
+    <h5 class="mb-3">Hàng cùng loại</h5>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" th:each="p : *{category.products}" th:if="${p.id} != ${item.id}">
+            <div class="card product-card">
+                <a th:href="@{|/product/detail/${p.id}|}" class="text-decoration-none text-dark">
+                    <img th:src="@{|/assets/images/${p.img}|}" style="height: 200px;width: 200px" alt="Product Image">
+                    <div class="card-body text-center">
+                        <h6 class="card-title" th:text="${p.name}"></h6>
+                        <p class="text-muted" th:text="${p.price} + ' vnđ'"></p>
+                    </div>
+                </a>
+                <div class="card-footer text-center">
+                    <button class="btn btn-success">
+                        <i class="bi bi-cart-plus"></i> Thêm vào giỏ hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+</body>
+</html>

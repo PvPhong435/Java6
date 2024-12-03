@@ -3,12 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Product List</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
 <main class="row">
-    <div th:each="p : ${items}">
+    <div th:each="p : ${items}" class="col-sm-4">
         <!-- Hiển thị tên sản phẩm -->
-        <div th:text="${p.name}"></div>
+        <div class="panel panel-primary poly-item text-center">
+        	<div class="panel-heading">
+        		<div class="panel-title" th:utext="${p.name}"></div>
+        	
+        	</div>
+        	<div class="panel-body">
+        		<a th:href="@{|/product/detail/${p.id}|}">
+        			<img alt="" th:src="@{|/assets/images/${p.image}|}">
+        		</a>
+        	</div>
+        	
+        	<div class="panel-footer text-right">
+        		<b class="pull-left">$[[${p.price}]]</b>
+        		<button class="btn btn-success">
+        			<i class="fas fa-shopping-cart"></i>
+
+        		</button>
+        	</div>
+        </div>
+        
         
         <!-- Hiển thị hình ảnh sản phẩm -->
         <div>

@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class Order {
 	@Id
 	@Column(name="Id")
-	private String id;
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="Username",referencedColumnName="Username")

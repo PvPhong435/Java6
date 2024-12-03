@@ -1,0 +1,8 @@
+<div class="card mb-3">
+    <div class="card-body text-center">
+        <i class="bi bi-cart" style="font-size: 1.5rem"></i>
+        <a th:href="@{/cart/view}" class="text-decoration-none">
+            <span>{{cart.count}} items</span> <span ng-if="cart.count > 0">x {{cart.amount | customNumber}} vnđ</span>
+        </a>
+    </div>
+</div>

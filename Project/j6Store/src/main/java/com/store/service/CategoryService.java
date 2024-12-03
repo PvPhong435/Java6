@@ -1,5 +1,10 @@
 package com.store.service;
 
-public interface CategoryService {
+import java.util.List;
 
+import com.store.entity.Category;
+
+
+public interface CategoryService {
+	List<Category> findAll();
 }

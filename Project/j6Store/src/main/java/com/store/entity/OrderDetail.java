@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class OrderDetail {
 	@Id
 	@Column(name="Id")
-	private String id;
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name="OrderId",referencedColumnName="Id")

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container">
+<nav th:replace="~{/home/_menu :: nav}"></nav>
+<hr>
+<h2 th:text="${message}"></h2>
+<hr>
+<h3 th:if="${#authentication.principal == 'anonymousUser'}">
+    Chưa đăng nhập
+</h3>
+<ul th:if="${#authentication.isAuthenticated()}">
+    <li th:if="${#authorization.expr('hasRole(''ADMIN'')')}">ADMIN</li>
+    <li th:if="${#authorization.expr('hasRole(''USER'')')}">USER</li>
+    <li th:if="${#authorization.expr('hasRole(''GUEST'')')}">GUEST</li>
+</ul>
+</body>
+</html>
