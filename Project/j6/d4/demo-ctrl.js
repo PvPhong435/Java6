@@ -1,5 +1,5 @@
-//let host = "https://poly-java-6-58146-default-rtdb.firebaseio.com/";
-let host = "https://localhost:8080/rest";
+let host = "https://poly-java-6-58146-default-rtdb.firebaseio.com/";
+// let host = "https://localhost:8080/rest";
 const app = angular.module("app", []);
 app.controller("ctrl", function($scope, $http)
 {

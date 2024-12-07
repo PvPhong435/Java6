@@ -20,7 +20,7 @@ import com.lab5.Model.Student;
 
 import lombok.RequiredArgsConstructor;
 @CrossOrigin("*")
-@RestController
+@Controller
 @RequiredArgsConstructor
 public class StudentController {
 

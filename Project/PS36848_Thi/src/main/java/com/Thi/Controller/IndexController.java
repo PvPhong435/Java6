@@ -1,8 +1,8 @@
-package com.Lab4.Controller;
+package com.Thi.Controller;
 
 import org.springframework.stereotype.Controller;
 
 @Controller
-public class FirebaseRestAPI {
-	
+public class IndexController {
+
 }
